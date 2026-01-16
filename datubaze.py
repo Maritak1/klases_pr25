@@ -1,12 +1,15 @@
+from pathlib import path
+base_dir =Path(__file__).resole().parent
+DB_FILE = base_dir / 'dati.db'
 import sqlite3
 
 def savienot():
-    DB = sqlite3.connect('dati.db')
+    DB = sqlite3.connect(DB_FILE)
     return DB.cursor()
 
 
 def get_topresult():
-    conn = sqlite3.connect('dati.db')
+    conn = sqlite3.connect(DB_FILE)
     c = conn.cursor()
     c.execute("SELECT * FROM rezultati")
     rezultati = c.fetchall()
