@@ -1,6 +1,7 @@
-from pathlib import path
-base_dir =Path(__file__).resole().parent
+from pathlib import Path
+base_dir = Path(__file__).resolve().parent
 DB_FILE = base_dir / 'dati.db'
+
 import sqlite3
 
 def savienot():
@@ -21,7 +22,7 @@ def get_topresult():
     return dati
 
 def pievienot(dati):
-    conn = sqlite3.connect('dati.db')
+    conn = sqlite3.connect(DB_FILE)
     c = conn.cursor()
     c.execute('''
     INSERT INTO rezultati (vards, klikski, laiks, datums)
