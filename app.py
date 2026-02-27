@@ -3,7 +3,7 @@ from pathlib import Path
 import json
 from datubaze import get_topresult, pievienot
 
-base_dir =Path(__file__).resole().parent
+base_dir =Path(__file__).resolve().parent
 app = Flask(__name__, template_folder=str(base_dir / 'templates'), static_folder=str(base_dir / 'static'))
 
 #app = Flask('app')
@@ -42,6 +42,7 @@ def pievienot_rezultatu():
         top_5 = sorted(top_rezultati, key=lambda x: (x['klikski'], x['laiks']))[:5]
         with open('score.json', 'w', encoding='UTF-8') as file:
             json.dump(top_5, file, ensure_ascii=False, indent=4)
+            return jsonify({'status': 'ok'}), 200
     except Exception:
          return jsonify({'status': 'error'}), 500
 
